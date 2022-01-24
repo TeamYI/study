@@ -1,0 +1,38 @@
+buildscript {
+    ext {
+        springBootVersion = '2.6.2' //전역변수 설정
+    }
+    repositories{
+        mavenCentral()
+        jcenter()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'java' //필수 플러그인
+apply plugin: 'eclipse' //필수 플러그인
+apply plugin: 'org.springframework.boot' //필수 플러그인
+apply plugin: 'io.spring.dependency-management' //스프링 부트의 의존성을 관리해주는 플러그인
+
+//plugins {
+//    id 'java'
+//}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories { //라이브러리를 저장할 장소 저장소 설정
+    mavenCentral() // 자신이 만든 라이브러리 업로드가 어려움
+    jcenter() // 직접 만든 라이브러리 업로드 간단하게 가능, mavenCentral() 저장소에도 업로드할 수 있음
+}
+
+dependencies { // 프로젝트 개발에 필요한 의존성을 선언
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
+
+test {
+    useJUnitPlatform()
+}
